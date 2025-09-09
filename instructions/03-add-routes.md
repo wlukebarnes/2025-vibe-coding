@@ -4,7 +4,7 @@ Make the app into a to-do list app with these specifications.
 do not be fancy with parameterization, just use f-strings.
 Make the UI look crisp - minimalistic yet aesthetically pleasing.
 
-note that CATALOG, and TABLE_PREFIX are environment variables you must use when writing queries. You must derive schema as MY_EMAIL env var, as MY_EMAIL.split('@')[0].replace('.', '\_'). Sometimes, this will be provided in a header instead and you will need to fetch it from there, which is explained in the backend section.
+You must derive schema from MY_EMAIL env var, as MY_EMAIL.split('@')[0].replace('.', '\_'). Sometimes, this will be provided in a header instead and you will need to fetch it from there, which is explained in the backend section.
 
 ### Frontend & user experience
 
@@ -12,7 +12,7 @@ It should show a list of the current user's to-do's. There's a checkbox to mark 
 
 ### backend
 
-The proper header to check for the email is located at `request.headers.get("X-Forwarded-Email")`. if it's not provided, it checks the .env variable 'MY_EMAIL'. This is the input to table's schema calculation, which is described above
+The proper header to check for the email is located at `request.headers.get("X-Forwarded-Email")`. if it's not provided, it checks the .env variable 'MY_EMAIL'. This is the input to table's schema calculation, which is described above. The header takes priority.
 
 you need to make routes for:
 
@@ -25,15 +25,15 @@ these routes will pass the user's email to the functional services so we can be 
 
 #### lists-service
 
-lists-service should expose functions for each of the routes above. it should use SqlWarehouse.query() under the hood with specific queries (don't bother with parameterization, just use simple f-strings. call out to me that you've done this even though it is less safe in production settings. please use all caps when telling me so I remember). the lists table is located at <CATALOG>.<SCHEMA>.<TABLE_PREFIX>\_lists.
+lists-service should expose functions for each of the routes above. it should use Lakebase.query() under the hood with specific queries (don't bother with parameterization, just use simple f-strings. call out to me that you've done this even though it is less safe in production settings. please use all caps when telling me so I remember). the lists table is located at <SCHEMA>.vibe_coding_lists.
 
 lists are defined as:
-CREATE TABLE <CATALOG>.<SCHEMA>.<TABLE_PREFIX>\_lists (
-id BIGINT GENERATED ALWAYS AS IDENTITY,
-user_email STRING NOT NULL,
-title STRING NOT NULL,
-description STRING,
-status STRING NOT NULL DEFAULT 'pending', --('pending' | 'completed' | 'deleted')
-created_at TIMESTAMP NOT NULL DEFAULT current_timestamp(),
-updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp()
-)
+CREATE TABLE IF NOT EXISTS vibe_coding_lists (
+id serial primary key,
+user_email TEXT NOT NULL,
+title TEXT NOT NULL,
+description TEXT,
+status TEXT NOT NULL DEFAULT 'pending',
+created_at TIMESTAMP NOT NULL DEFAULT now(),
+updated_at TIMESTAMP NOT NULL DEFAULT now()
+);

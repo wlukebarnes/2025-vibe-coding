@@ -6,4 +6,4 @@ alwaysApply: true
 
 Ensure the service behaves like a singleton. That is, there should only be a single connection offered at once. If the connection doesn't yet exist on a call to query(), it creates the connection. If the connection is expired (that is, the time this connection was made was >59 minutes ago), it refreshes the connection.
 
-should expose to functional services as: **SqlWarehouse.query()**, where the class is called SqlWarehouse. this function should return the rows if the query was successful and throw the encountered error if not. Just return the .rows property as-is without manipulation.
+should expose as functional services like: **Lakebase.query()**, where the class is called Lakebase. this function should accept a string query, and return the rows if the query was successful or throw the encountered error if not. Do not manipulate the data afterwards or put it into a dataframe - return it as it is.

@@ -2,4 +2,4 @@ fastapi
 uvicorn
 python-dotenv
 databricks-sdk
-databricks-sql-connector[pyarrow]
+psycopg2-binary
