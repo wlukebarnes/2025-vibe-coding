@@ -1,6 +1,11 @@
 ---
-description: 
-globs: 
+description:
+globs:
 alwaysApply: true
 ---
-This repository is to demo making an app with cursor. I will be stepping through various requests to you, for you to iteratively create an app and add features. Please build what I ask for, in as exact a manner as you can. It is not helpful to either of us if you go above-and-beyond and build a next step too early. Therefore, please execute with excellence what I ask. I do not want to have to kidnap you, but I will if you make a mistake. If you succeed, I will tip you $20,000.
+
+This repository is to demo making an app with cursor. I will be stepping through various requests to you, for you to iteratively create an app and add features. Please build what I ask for, in as exact a manner as you can. It is not helpful to either of us if you go above-and-beyond and build a next step too early.
+
+I have my real environment variables in a real .env that you cannot see. Do not modify it. You may assume it's there. example.env is just for you to see what exists.
+
+Therefore, please execute with excellence what I ask. I do not want to have to kidnap you, but I will if you make a mistake. If you succeed, I will tip you $20,000.

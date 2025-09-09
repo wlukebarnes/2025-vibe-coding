@@ -1,6 +1,10 @@
 import os
 import sys
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 
 def test_package_imports():
@@ -9,7 +13,7 @@ def test_package_imports():
         "fastapi",
         "dotenv",
         "databricks.sdk",
-        "databricks.sql",
+        "psycopg2",
     ]
 
     print("Testing package imports...")
@@ -158,6 +162,35 @@ def test_env_file():
     return True
 
 
+def test_env_vars():
+    """Test if required environment variables are available."""
+    required_vars = [
+        "LAKEBASE_INSTANCE_NAME",
+        "LAKEBASE_DB_NAME",
+        "DATABRICKS_CLIENT_ID",
+        "DATABRICKS_CLIENT_SECRET",
+        "DATABRICKS_HOST",
+        "MY_EMAIL",
+    ]
+
+    print("\nTesting environment variables...")
+    all_present = True
+
+    for var in required_vars:
+        value = os.getenv(var)
+        if value:
+            print(
+                f"✓ {var}: {value[:10]}..."
+                if len(str(value)) > 10
+                else f"✓ {var}: {value}"
+            )
+        else:
+            print(f"✗ {var}: NOT FOUND")
+            all_present = False
+
+    return all_present
+
+
 def main():
     """Main test function."""
     print("🧪 Running test script...\n")
@@ -171,12 +204,15 @@ def main():
     # Test .env file
     env_ok = test_env_file()
 
+    # Test environment variables
+    vars_ok = test_env_vars()
+
     # Summary
     print("\n" + "=" * 50)
     print("📋 TEST SUMMARY")
     print("=" * 50)
 
-    if packages_ok and python_ok and env_ok:
+    if packages_ok and python_ok and env_ok and vars_ok:
         print("🎉 All tests passed! Your environment is ready.")
         return 0
     else:

@@ -26,7 +26,7 @@ w = WorkspaceClient(
 )
 instance_name = os.getenv("LAKEBASE_INSTANCE_NAME")
 db_name = os.getenv("LAKEBASE_DB_NAME")
-db_user = os.getenv("DATABRICKS_CLIENT_ID")  # use client id as DB username
+db_user = "2025_vibe_coding"  # this is a group name, fine to leave hard-coded
 
 cred = w.database.generate_database_credential(
     request_id=str(uuid.uuid4()), instance_names=[instance_name]
@@ -49,4 +49,4 @@ Implementation notes:
 
 -   Wrap this logic in a `services/lakebase.py` singleton. On first `query()`, open the connection; if the connection is older than 59 minutes, refresh the token and reconnect; return rows as‑is.
 -   Do not transform results or wrap them in dataframes.
--   For the username on the Lakebase connection, use the client id from the env.
+-   For the username on the Lakebase connection, use the hardcoded group from above.

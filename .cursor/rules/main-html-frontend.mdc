@@ -1,6 +1,5 @@
 ---
-description:
-globs: frontend/**/*.*
+description: This task is useful whenever interacting with the UI
 alwaysApply: false
 ---
 
