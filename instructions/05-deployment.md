@@ -7,8 +7,6 @@ this app will be deployed on databricks. create a databricks `app.yaml` using th
 for the env section, include only the variables used by this app and Lakebase:
 
 -   DATABRICKS_HOST
--   DATABRICKS_CLIENT_ID
--   DATABRICKS_CLIENT_SECRET
 -   LAKEBASE_INSTANCE_NAME
 -   LAKEBASE_DB_NAME
 

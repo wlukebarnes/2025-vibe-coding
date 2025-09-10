@@ -8,4 +8,4 @@ This is a fastapi app, so the .env and the requirements.txt are at the root of t
 
 wrap endpoints in a try/catch to ensure the app doesn't crash.
 
-use uvicorn to spin the app up on port 8000
+use uvicorn to spin the app up on port 8000.

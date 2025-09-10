@@ -12,6 +12,8 @@ Environment variables available (used by the Databricks SDK and the connection):
 -   `LAKEBASE_INSTANCE_NAME`
 -   `LAKEBASE_DB_NAME`
 
+Add a button to index.html that selects NOW() from lakebase and displays it in the ui.
+
 Minimal example:
 
 ```python
@@ -43,6 +45,8 @@ conn = psycopg2.connect(
 with conn, conn.cursor() as cur:
     cur.execute("SELECT 1;")
     rows = cur.fetchall()
+    conn.commit()
+    return rows
 ```
 
 Implementation notes:
@@ -50,3 +54,4 @@ Implementation notes:
 -   Wrap this logic in a `services/lakebase.py` singleton. On first `query()`, open the connection; if the connection is older than 59 minutes, refresh the token and reconnect; return rows as‑is.
 -   Do not transform results or wrap them in dataframes.
 -   For the username on the Lakebase connection, use the hardcoded group from above.
+-   Only initialize upon first time trying to use it.

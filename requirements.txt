@@ -1,5 +1,6 @@
 fastapi
 uvicorn
 python-dotenv
-databricks-sdk
+databricks-sdk==0.65.0
 psycopg2-binary
+pydantic

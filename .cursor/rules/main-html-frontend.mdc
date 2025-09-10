@@ -1,8 +1,6 @@
 ---
-description: This task is useful whenever interacting with the UI
+globs: *.html
 alwaysApply: false
 ---
 
 really, everything in the frontend should be located within the index.html file. Do your best to add summary comments that explain what's happening at a high level.
-
-use bootstrap's component library for styling.
