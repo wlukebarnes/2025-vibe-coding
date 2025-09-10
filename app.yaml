@@ -1,8 +1,0 @@
-command: ['uvicorn', 'app:app', '--host', '0.0.0.0', '--port', '8000']
-env:
-    - name: 'DATABRICKS_HOST'
-      value: 'https://e2-demo-field-eng.cloud.databricks.com'
-    - name: 'LAKEBASE_INSTANCE_NAME'
-      value: 'fe_shared_demo'
-    - name: 'LAKEBASE_DB_NAME'
-      value: 'vibe_coding'
